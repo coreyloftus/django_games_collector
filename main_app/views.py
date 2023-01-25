@@ -35,5 +35,11 @@ games = [
         "https://www.mobygames.com/images/covers/l/14437-zelda-ii-the-adventure-of-link-nes-front-cover.jpg"),
 ]
 
+class Home(TemplateView):
+    template_name= 'home.html'
+
+class About(TemplateView):
+    template_name = 'about.html'
+
 class Game_List(TemplateView):
     template_name= 'game_list.html'
