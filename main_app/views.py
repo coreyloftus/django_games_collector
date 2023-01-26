@@ -47,3 +47,8 @@ class GameCreate(CreateView):
               'release_date', 'platform', 'imageURL', 'favorite']
     template_name = 'game_create.html'
     success_url = '/games/'
+
+
+class GameDetail(TemplateView):
+    model = Game
+    template_name = 'game_detail.html'

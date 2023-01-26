@@ -18,23 +18,25 @@
 {% comment %} index display {% endcomment %}
 <div class="gallery">
     {% for game in games %}
-    <div class="card">
-        <div class="card-radius is-0.5rem">
-            <div class="card-header">
-                <p class="title is-4 color-black">{{game.title}}</p>
-            </div>
-            <div class="card-image">
-                <img class="image is-64by64" src="{{game.imageURL}}" alt="{{game.title}}" />
-            </div>
-            <div class="card-content">
-                <p><span class="subtitle is-5">Published by:</span> {{game.publisher}}</p>
-                <p><span class="subtitle is-5">Release date:</span> {{game.release_date}}</p>
-                <p><span class="subtitle is-5">Genre:</span> {{game.genre}}</p>
-                <p><span class="subtitle is-5">Platform:</span> {{game.platform}}</p>
-                <p><span class="subtitle is-5">Image link:</span> {{game.imageURL}}</p>
+    <a href="{% url 'game_detail' game.pk %}">
+        <div class="card">
+            <div class="card-radius is-0.5rem">
+                <div class="card-header">
+                    <p class="title is-4 color-black">{{game.title}}</p>
+                </div>
+                <div class="card-image">
+                    <img class="image is-64by64" src="{{game.imageURL}}" alt="{{game.title}}" />
+                </div>
+                <div class="card-content">
+                    <p><span class="subtitle is-5">Published by:</span> {{game.publisher}}</p>
+                    <p><span class="subtitle is-5">Release date:</span> {{game.release_date}}</p>
+                    <p><span class="subtitle is-5">Genre:</span> {{game.genre}}</p>
+                    <p><span class="subtitle is-5">Platform:</span> {{game.platform}}</p>
+                    <p><span class="subtitle is-5">Image link:</span> {{game.imageURL}}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
     {% empty %}
     <article class="message">
         <div class="message-header">
