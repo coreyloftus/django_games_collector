@@ -3,8 +3,9 @@ from django.http import HttpResponse
 
 from .models import Game
 
-from django.views import View
+# from django.views import View
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 
@@ -49,7 +50,7 @@ class GameCreate(CreateView):
     success_url = '/games/'
 
 
-class GameDetail(TemplateView):
+class GameDetail(DetailView):
     model = Game
     template_name = 'game_detail.html'
 
