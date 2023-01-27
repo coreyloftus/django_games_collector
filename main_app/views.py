@@ -52,3 +52,17 @@ class GameCreate(CreateView):
 class GameDetail(TemplateView):
     model = Game
     template_name = 'game_detail.html'
+
+
+class GameUpdate(UpdateView):
+    model = Game
+    fields = ['title', 'genre', 'publisher',
+              'release_date', 'platform', 'imageURL', 'favorite']
+    template_name = 'game_update.html'
+    success_url = '/games/'
+
+
+class GameDelete(DeleteView):
+    model = Game
+    template_name = "game_delete_confirmation.html"
+    success_url = "/games/"
