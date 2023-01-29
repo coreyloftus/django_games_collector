@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 
-from .models import Game
+from .models import *
 
-# from django.views import View
+from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -67,3 +67,12 @@ class GameDelete(DeleteView):
     model = Game
     template_name = "game_delete_confirmation.html"
     success_url = "/games/"
+
+
+class CharacterCreate(View):
+    def post(self, request, pk):
+        name = request.POST.get("name")
+        imageURL = request.POST.get("imageURL")
+        game = Game.objects.get(pk=pk)
+        Character.objects.create(name=name, imageURL=imageURL, game=game)
+        return redirect('game_detail.html', pk=pk)
