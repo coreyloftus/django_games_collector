@@ -75,4 +75,4 @@ class CharacterCreate(View):
         imageURL = request.POST.get("imageURL")
         game = Game.objects.get(pk=pk)
         Character.objects.create(name=name, imageURL=imageURL, game=game)
-        return redirect('game_detail.html', pk=pk)
+        return redirect('game_detail', pk=pk)

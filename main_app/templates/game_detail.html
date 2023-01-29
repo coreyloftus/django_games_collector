@@ -14,40 +14,61 @@
     <h1 class="title">{{game.title}}</h1>
 </div>
 <div class="detail__container">
-    <div class="detail__songs mb-5">
+    <div class="detail__characters mb-5">
         <h3 class="title is-3">Characters</h3>
-        {% for character in game.characters.all %}
-        <div class="character">
-            <span>{{forloop.counter}}</span>
-            <img class="image is-64x64" src="{{character.imageURL}}" />
-            <span><b>{{character.name}}</b></span>
-        </div>
-        {% empty %}
-        <article class="message">
-            <div class="message-header">
-                <p>No Characters available</p>
+        <form class="mb-5" action="{% url 'character_create' game.pk %}" method="post">
+            {% csrf_token %}
+            <div class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" name="name" placeholder="Name" required />
+                </div>
+                <div class="control">
+                    <input class="input"
+                    type="text"
+                    name="imageURL"
+                    placeholder="Image URL"
+                    required />
+                </div>
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Add Character" />
+                </div>
             </div>
-        </article>
-        {% endfor %}
-    </div>
-    <div class="buttons">
-        <a href="{% url 'game_update' game.pk %}" class="button is-info">
-            <span class="icon">
-                <i class="fas fa-edit"></i>
-            </span>
-        </a>
-        <a href="{% url 'game_delete' game.pk %}" class="button is-danger">
-            <span class="icon">
-                <i class="fas fa-trash-alt"></i>
-            </span>
-        </a>
-    </div>
-    <div class="detail__about">
-        <h4 class="is-2">About</h4>
-        <p>{{game.publisher}}</p>
-        <p>{{game.release_date}}</p>
-        <p>{{game.genre}}</p>
-        <p>{{game.platform}}</p>
+        </form>
+                    {% for character in game.characters.all %}
+                    <div class="character">
+                        <span>{{forloop.counter}}</span>
+                        <img class="image is-64x64" src="{{character.imageURL}}" />
+                        <span><b>{{character.name}}</b></span>
+                    </div>
+                    {% empty %}
+                    <article class="message">
+                        <div class="message-header">
+                            <p>No Characters available</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'game_update' game.pk %}" class="button is-info">
+                        <span class="icon">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                    </a>
+                    <a href="{% url 'game_delete' game.pk %}" class="button is-danger">
+                        <span class="icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="detail__about">
+                    <h4 class="is-2">About</h4>
+                    <p>{{game.publisher}}</p>
+                    <p>{{game.release_date}}</p>
+                    <p>{{game.genre}}</p>
+                    <p>{{game.platform}}</p>
+                </div>
+            </div>
+            {% endblock %}
+        </form>
     </div>
 </div>
-{% endblock %}
